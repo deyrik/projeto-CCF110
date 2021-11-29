@@ -9,4 +9,7 @@ sabemos que:
 
  com o algoritmo que pretendo criar, tentaremos definir um mmr de acordo 
  com 20 partidas do jogador e a sua relacao de vitoria ou derrota para 
- saber a classificacao (ELO) no qual ele se encaixaria.
+ saber a classificacao (ELO) no qual ele se encaixaria. 
+
+ gabriel. 28/11
+ 
