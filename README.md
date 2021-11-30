@@ -14,4 +14,4 @@ sabemos que:
  saber a classificacao (ELO) no qual ele se encaixaria. 
 
 
-2021 30 11 
+2021 30 111
