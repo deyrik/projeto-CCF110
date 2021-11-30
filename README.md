@@ -1,3 +1,5 @@
+Gabriel Santos-4705
+
 jogando league of legends há um algoritmo no game que determina qual sera seu ranking
 em game, o algoritmo não é exposto ao publico, mas os jogadores sabem breviamente 
 seu funcionamento. 
