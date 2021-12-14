@@ -11,7 +11,7 @@ int main()
   int contador = 1;
   float mmr;
 
-  printf("quantos jogadores terao o mmr analisados?");
+  printf("quantos jogadores terao o mmr analisados?\n");
   scanf("%d",&quantidadejogadores);
 
 //repetidor - repetira o codigo para saber o mrr de jogador por jogador
