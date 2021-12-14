@@ -3,56 +3,43 @@
 
 int main()
 {
- //1° modo de declarar variavel, linha a linha
+ //variaveis 
 
-  int vjogador1;
-  int vjogador2;
-  int vjogador3;
+  int vitoriasjogador;
+  int derrotasjogador;
+  int quantidadejogadores;
+  int contador = 1;
+  float mmr;
 
+  printf("quantos jogadores terao o mmr analisados?");
+  scanf("%d",&quantidadejogadores);
 
-//2º modo de declarar variavel,na mesma linha
-//tipo variavelA,B,C
+//repetidor - repetira o codigo para saber o mrr de jogador por jogador
 
-  int djogador1,djogador2,djogador3;
-  
-  printf("quantas partidas o jogador 1 teve de vitorias ?\n");
-  scanf("%d",&vjogador1);
-  printf("quantas partidas o jogador 1 teve de derrotas ?\n");
-  scanf("%d",&djogador1);
-  printf("************************\n");
+for (contador; contador < (quantidadejogadores + 1); contador++)
+{
+  printf("quantas partidas o jogador %d teve de vitorias ?\n",contador);
+  scanf("%d",&vitoriasjogador);
 
-  printf("quantas partidas o jogador 2 teve de vitorias ?\n");
-  scanf("%d",&vjogador2);
-  printf("quantas partidas o jogador 2 teve de derrotas ?\n");
-  scanf("%d",&djogador2);
-  printf("************************\n");
+  printf("quantas partidas o jogador %d teve de derrotas ?\n",contador);
+  scanf("%d",&derrotasjogador);
 
-  printf("quantas partidas o jogador 3 teve de vitorias ?\n");
-  scanf("%d",&vjogador3);
-  printf("quantas partidas o jogador 3 teve de derrotas ?\n");
-  scanf("%d",&djogador3);
-  printf("************************\n");
-
-/* calculo mmr
+/*  calculo mmr
     vitorias valem:10 pontos
-    derrotas valem:-10 pontos 
-    ....
-    */
+    derrotas valem:-10 pontos */
 
-   float mmr1;
-   float mmr2;
-   float mmr3;
-
-  mmr1= vjogador1*10 + djogador1*-10;
-  mmr2= vjogador2*10 + djogador2*-10;
-  mmr2= vjogador3*10 + djogador3*-10;
-
+  mmr = (vitoriasjogador * 10) + (derrotasjogador * -10);
+  
+  printf("o calculo de mmr seu apresentado eh de: %.1f\n",mmr);
+ 
+  printf("\n************************\n");
 
 
 //condional para jogadores jogarem juntos 
 
 //Perguntar o fabricio pq esta apresentando apenas as condiçoes 1ª e ultima (nao consegui entender onde pode estar errado)
 
+/* quardarei  as informaçoes nos vetores  para comparalas 
 
   if (mmr1==mmr2 && mmr2!= mmr3)
   {
@@ -77,51 +64,16 @@ int main()
  if (mmr1!=mmr2!=mmr3)
  {
    printf("balanceamento nao compativel para o ranking dos jogadores\n");
- }
- 
-  
-
-//teste:
-printf("%d",vjogador1);
-printf("%d",djogador1);
-
-printf("%d",vjogador2);
-printf("%d",djogador2);
-
-printf("%d",vjogador3);
-printf("%d",djogador3);
-
-printf("%f",mmr1);
-printf("%f",mmr2);
-printf("%f",mmr3);
-
-
-
-
-  
-  
-  
+ } */ 
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
 
   return 0;
 }
+
 
