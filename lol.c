@@ -63,6 +63,8 @@ mmr entre: (N-50) ou (N+50) !!! OK
 mmr acima de 50 de diferença ou abaixo de 50 de diferença - nao podem !!! OK
 */
 
+
+/*
 for ( i = 1; i < (quantidadejogadores + 1) ; i++){
   for ( j = 1; j < (quantidadejogadores + 1); j++) {
     
@@ -85,8 +87,43 @@ for ( i = 1; i < (quantidadejogadores + 1) ; i++){
     }
    }
   }
+}
+*/
+//adicionando uma matriz, jogador x jogador, onde o encontro de cada jogador representa a possobilidade de jogarem juntos(1) ou nao jogarem juntos 0.
+
+ float matriz_jogadorx_jogador[quantidadejogadores][quantidadejogadores];
+
+ for ( i = 1; i < (quantidadejogadores + 1) ; i++){
+  for ( j = 1; j < (quantidadejogadores + 1); j++) {
+    
+    if ((i!=j)){
+    
+    if (vetormmrs[i]==vetormmrs[j] )
+    {
+      matriz_jogadorx_jogador[i][j]=1;
+      break;
+    }
+    if ((vetormmrs[j]-50)<vetormmrs[i] && vetormmrs[i]<(vetormmrs[j]+50) )
+    {
+      matriz_jogadorx_jogador[i][j]=1;
+    }
+    if (vetormmrs[i]>(vetormmrs[j]+50) || vetormmrs[i]<(vetormmrs[j]-50) )
+    {
+      matriz_jogadorx_jogador[i][j]=0;
+    }
+   }
+
+  if (i==j)
+  {
+    matriz_jogadorx_jogador[i][j]=1;
+  }
+  
+  }
   
 }
+
+
+
 
 printf("\n");
 
