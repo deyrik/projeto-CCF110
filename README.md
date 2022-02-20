@@ -9,6 +9,11 @@ sabemos que:
  *ganhar de fomra sequencial almenta o mmr de forma bastante positiva 
  *perder de forma sequencial abaixa o mrr de forma bastante negativa 
 
+ (caso aconteça os ultimos topicos o acrescimo de ponto é reduzido)
+
  com o algoritmo que pretendo criar, tentaremos definir um mmr de acordo 
  com 20 partidas do jogador e a sua relacao de vitoria ou derrota para 
- saber a classificacao (ELO) no qual ele se encaixaria. 
+ saber a classificacao (ELO) no qual ele se encaixaria.
+
+ obviamente sera um algoritmo estimativo.
+  
