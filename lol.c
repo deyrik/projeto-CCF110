@@ -1,82 +1,22 @@
-  #include <stdio.h>
-  #include <stdlib.h>
+#include "lol.h"
 
 
-typedef struct tipojogador {
-
-  int vitorias;
-  int derrotas;
-  int mmr; 
-
-}Estrutura_Jogador;
-
-
-
-
-//funçao 1 
-int quantidade_jogadores();
-
-//funcao 2
-int calcula_mmr(int Vit,int Der);
-
-//funcao 3
-void Salva_Derrotas_eVitorias(int n_contador, Estrutura_Jogador vetor_jogadores[]);
-
-//funcao 4
-void mostra_dados(int quantia_jogadores,Estrutura_Jogador jogadores[]);
-
-//funçao 3
-void preenche_matrix_possibilidade_jogar_juntos (int z, int M[z][z],Estrutura_Jogador acesso_a_dados[]);
-
-//funcao 6 
-void imprime_possiveis_jogadores(int n,int M[n][n]);
-
-
-
-
-
-  int main(){
-
-  int qtd_players;
-  int i,j;
-  
-  printf("Serao analisadas 20 partidas de cada jogador.\n");
-  printf("Quantos jogadores terao seu MMR analisados?\n:");
-  qtd_players = quantidade_jogadores();
-
-  Estrutura_Jogador Dados_players[qtd_players]; 
-  int matriz_jogadorx_jogador[qtd_players][qtd_players];
-
-
-  Salva_Derrotas_eVitorias(qtd_players,Dados_players);
-
-  printf("Apresentacao dos dados de cada jogador:\n");
-  mostra_dados(qtd_players,Dados_players);
-
-  preenche_matrix_possibilidade_jogar_juntos(qtd_players,matriz_jogadorx_jogador,Dados_players);
-
-  imprime_possiveis_jogadores(qtd_players,matriz_jogadorx_jogador);
-
-
-  return 0;
-}
-
-
-
-//FUNÇÕES:
 
 
 //funçao 1 
 int quantidade_jogadores(){
 
+  printf("Serao analisadas 20 partidas de cada jogador.\n");
+  printf("Quantos jogadores terao seu MMR analisados?:");
   int qtd;
   scanf("%d",&qtd);
+  printf("\n");
   return qtd;
 }
 
 
 //funcao 2
-void Salva_Derrotas_eVitorias(int n_contador, Estrutura_Jogador vetor_jogadores[]){
+void Guardar_Derrotas_eVitorias(int n_contador, Estrutura_Jogador vetor_jogadores[]){
   int k;
   for ( k = 0; k < n_contador; k++) //n_contador vao receber numero e jogadores. 
   {
@@ -87,9 +27,9 @@ void Salva_Derrotas_eVitorias(int n_contador, Estrutura_Jogador vetor_jogadores[
     printf("portanto o jogador %d teve %d derrota(s)!\n\n",k+1,vetor_jogadores[k].derrotas);
 
     vetor_jogadores[k].mmr = calcula_mmr(vetor_jogadores[k].vitorias,vetor_jogadores[k].derrotas);
-
   }
 }
+
 
 //funcao 3
 int calcula_mmr(int Vit,int Der){
@@ -104,6 +44,7 @@ int calcula_mmr(int Vit,int Der){
 //funçao 4 
 void mostra_dados(int quantia_jogadores,Estrutura_Jogador jogadores[]){
 
+  printf("Apresentacao dos dados de cada jogador:\n\n");
   int i;
   for ( i = 0; i < quantia_jogadores; i++)
   {
@@ -155,27 +96,30 @@ void preenche_matrix_possibilidade_jogar_juntos (int z, int M[z][z],Estrutura_Jo
 void imprime_possiveis_jogadores(int n,int M[n][n]){
 
   int i,j;
+  int contador = 0;
 
   printf("podem jogar juntos os players:\n");
   for ( i = 0; i < n ;  i++){
-    for ( j = 0; j < n; j++){
+      for ( j = 0; j < n; j++)
+      {
 
       if ((i!=j && i<j) && M[i][j] == 1)
       {
         printf("player %d e %d\n",(i+1),(j+1));
+        contador++;
       }
+      continue;
 
-      if ((i!=j && i<j) && M[i][j] == 1)
-      {
-        break;
-      }
-        if (i==(n-1) && M[i][j]!=1)
-        {
-          printf("nenhum jogador ");
-        }
-      
     }
   }
+
+  if (contador==0)
+  {
+    printf("nenhum jogador ");
+  }
+  
+
   printf("\n");
   return;
 }
+
