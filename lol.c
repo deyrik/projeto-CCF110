@@ -14,89 +14,109 @@ typedef struct tipojogador {
 
 
 //funçao 1 
-int quandidade_de_jogadores();
+int quantidade_jogadores();
 
 //funcao 2
 int calcula_mmr(int Vit,int Der);
 
-//funcao 3 
+//funcao 3
 void Salva_Derrotas_eVitorias(int n_contador, Estrutura_Jogador vetor_jogadores[]);
 
-//funçao 4
+//funcao 4
+void mostra_dados(int quantia_jogadores,Estrutura_Jogador jogadores[]);
+
+//funçao 3
 void preenche_matrix_possibilidade_jogar_juntos (int z, int M[z][z],Estrutura_Jogador acesso_a_dados[]);
 
-//funcao 5 
+//funcao 6 
 void imprime_possiveis_jogadores(int n,int M[n][n]);
+
+
 
 
 
   int main(){
 
-  int qtd_jogadores;
+  int qtd_players;
   int i,j;
   
-  qtd_jogadores = quandidade_de_jogadores();
+  printf("Serao analisadas 20 partidas de cada jogador.\n");
+  printf("Quantos jogadores terao seu MMR analisados?\n:");
+  qtd_players = quantidade_jogadores();
 
-  Estrutura_Jogador Dados_players[qtd_jogadores];
-  int matriz_jogadorx_jogador[qtd_jogadores][qtd_jogadores];
+  Estrutura_Jogador Dados_players[qtd_players]; 
+  int matriz_jogadorx_jogador[qtd_players][qtd_players];
 
-  Salva_Derrotas_eVitorias(qtd_jogadores,Dados_players);
 
-  preenche_matrix_possibilidade_jogar_juntos(qtd_jogadores,matriz_jogadorx_jogador,Dados_players);
+  Salva_Derrotas_eVitorias(qtd_players,Dados_players);
 
-  imprime_possiveis_jogadores(qtd_jogadores,matriz_jogadorx_jogador);
+  printf("Apresentacao dos dados de cada jogador:\n");
+  mostra_dados(qtd_players,Dados_players);
+
+  preenche_matrix_possibilidade_jogar_juntos(qtd_players,matriz_jogadorx_jogador,Dados_players);
+
+  imprime_possiveis_jogadores(qtd_players,matriz_jogadorx_jogador);
 
 
   return 0;
 }
 
 
-//rodou como esperado. 
 
 //FUNÇÕES:
 
 
 //funçao 1 
-int quandidade_de_jogadores(){
+int quantidade_jogadores(){
 
-  int quantidade;
-  printf("quantos jogadores terao o mmr analisados?\n");
-  scanf("%d",&quantidade);
-  printf("No total precisam ser analisadas 20 partidas de cada jogador\n");
-  return quantidade;
+  int qtd;
+  scanf("%d",&qtd);
+  return qtd;
 }
+
 
 //funcao 2
-int calcula_mmr(int Vit,int Der){
-  int valor_mmr,vitoria,derrota;
-  vitoria = Vit * 10;
-  derrota = Der * 10;
-  valor_mmr = vitoria - derrota;
-  printf("vitorias: %d\n",vitoria);
-  printf("derrotas: %d\n",derrota);
-  printf("o calculo de seu mmr apresentado eh de: %d\n",valor_mmr);
-  printf("\n************************\n");
-  return valor_mmr;
-}
-
-//funcao 3 
 void Salva_Derrotas_eVitorias(int n_contador, Estrutura_Jogador vetor_jogadores[]){
   int k;
   for ( k = 0; k < n_contador; k++) //n_contador vao receber numero e jogadores. 
   {
-    printf("De 20 partidas, quantas o jogador %d teve de vitoria(s)?\n",k+1);
+    printf("De 20 partidas, quantas o jogador %d teve de vitoria(s)?",k+1);
     scanf("%d",&vetor_jogadores[k].vitorias);
 
     vetor_jogadores[k].derrotas = 20 - (vetor_jogadores[k].vitorias);
-    printf("portanto o jogador %d teve %d derrota(s)!\n",k+1,vetor_jogadores[k].derrotas);
+    printf("portanto o jogador %d teve %d derrota(s)!\n\n",k+1,vetor_jogadores[k].derrotas);
 
     vetor_jogadores[k].mmr = calcula_mmr(vetor_jogadores[k].vitorias,vetor_jogadores[k].derrotas);
 
   }
 }
 
-//funçao 4
+//funcao 3
+int calcula_mmr(int Vit,int Der){
+  int valor_mmr;
+  Vit = Vit * 10;
+  Der = Der * 10;
+  valor_mmr = Vit - Der;
+  return valor_mmr;
+}
 
+
+//funçao 4 
+void mostra_dados(int quantia_jogadores,Estrutura_Jogador jogadores[]){
+
+  int i;
+  for ( i = 0; i < quantia_jogadores; i++)
+  {
+    printf("Jogador %d:\n",(i+1));
+    printf("Vitorias: %d\n",jogadores[i].vitorias);
+    printf("Derrotas: %d\n",jogadores[i].derrotas);
+    printf("o calculo do MMR apresentado e de: %d\n\n",jogadores[i].mmr);
+  }
+  return;
+}
+
+
+//funçao 5
 void preenche_matrix_possibilidade_jogar_juntos (int z, int M[z][z],Estrutura_Jogador acesso_a_dados[]){
 
   int i,j;
@@ -131,13 +151,12 @@ void preenche_matrix_possibilidade_jogar_juntos (int z, int M[z][z],Estrutura_Jo
   }
 }
 
-//funcao 5 
-
+//funcao 6 
 void imprime_possiveis_jogadores(int n,int M[n][n]){
 
-  int i,j;//contadores
-  printf("podem jogar juntos os players:\n");
+  int i,j;
 
+  printf("podem jogar juntos os players:\n");
   for ( i = 0; i < n ;  i++){
     for ( j = 0; j < n; j++){
 
@@ -145,7 +164,16 @@ void imprime_possiveis_jogadores(int n,int M[n][n]){
       {
         printf("player %d e %d\n",(i+1),(j+1));
       }
-    
+
+      if ((i!=j && i<j) && M[i][j] == 1)
+      {
+        break;
+      }
+        if (i==(n-1) && M[i][j]!=1)
+        {
+          printf("nenhum jogador ");
+        }
+      
     }
   }
   printf("\n");
