@@ -3,9 +3,11 @@
 
 typedef struct tipojogador {
 
+  char apelido[20];
   int vitorias;
   int derrotas;
-  int mmr; 
+  int mmr;
+
 
 }Estrutura_Jogador;
 
